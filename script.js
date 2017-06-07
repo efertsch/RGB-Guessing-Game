@@ -9,13 +9,25 @@ var colors = [
 
 var tiles = document.getElementsByClassName("tile");
 
-var winningColor = colors[1];
+var winningColor = pickRandomColor();
 var winningColorDisplay = document.getElementById("winning-color");
 
 var winningColorDisplay = document.getElementById("winning-color");
 winningColorDisplay.textContent = winningColor;
 
 var message = document.getElementById("message");
+
+
+function changeColors(color) {
+	for(var i = 0; i < tiles.length; i ++) {
+		tiles[i].style.backgroundColor = color;
+	}
+};
+
+function pickRandomColor(){
+	var random = Math.floor(Math.random() * colors.length);
+	return colors[random];
+};
 
 for(var i = 0; i < tiles.length; i ++) {
 		tiles[i].style.backgroundColor = colors[i];
@@ -37,11 +49,7 @@ for(var i = 0; i < tiles.length; i ++) {
 		});
 };
 
-var winningColorDisplay = document.getElementById("winning-color");
-winningColorDisplay.textContent = winningColor;
 
-function changeColors(color) {
-	for(var i = 0; i < tiles.length; i ++) {
-		tiles[i].style.backgroundColor = color;
-	}
-};
+
+
+
