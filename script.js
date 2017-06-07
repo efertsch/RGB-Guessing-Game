@@ -8,8 +8,17 @@ var colors = [
 ];
 
 var tiles = document.getElementsByClassName("tile");
+
 var winningColor = colors[1];
+var winningColorDisplay = document.getElementById("winning-color");
 
 for(var i = 0; i < tiles.length; i ++) {
 		tiles[i].style.backgroundColor = colors[i];
+		tiles[i].addEventListener("click", function(){
+			alert("clicked");
+		});
 };
+
+var winningColorDisplay = document.getElementById("winning-color");
+winningColorDisplay.textContent = winningColor;
+
