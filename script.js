@@ -1,3 +1,4 @@
+// variable declarations 
 var colors = [
 	"rgb(182, 66, 244)",
 	"rgb(152, 168, 11)",
@@ -17,7 +18,7 @@ winningColorDisplay.textContent = winningColor;
 
 var message = document.getElementById("message");
 
-
+// functions
 function changeColors(color) {
 	for(var i = 0; i < tiles.length; i ++) {
 		tiles[i].style.backgroundColor = color;
@@ -29,6 +30,12 @@ function pickRandomColor(){
 	return colors[random];
 };
 
+function setContent(text){
+	message.textContent = text;
+};
+
+
+// game logic 
 for(var i = 0; i < tiles.length; i ++) {
 		tiles[i].style.backgroundColor = colors[i];
 
@@ -38,12 +45,12 @@ for(var i = 0; i < tiles.length; i ++) {
 			if(clickedColor === winningColor) {
 				for(var i = 0; i < tiles.length; i ++) {
 					changeColors(clickedColor);
-					message.textContent = "Correct!";
+					setContent("Correct!");
 				}
 			} else {
 				for(var i = 0; i < tiles.length; i ++) {
 					this.style.backgroundColor = "#232323";
-					message.textContent = "Try Again!"
+					setContent("Try Again!");
 				}
 			}
 		});
