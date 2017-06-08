@@ -15,6 +15,9 @@ var h1 = document.querySelector("h1");
 
 var resetButton = document.getElementById("reset");
 
+var easyButton = document.getElementById("easy");
+var hardButton = document.getElementById("hard");
+
 // functions
 function changeColors(color) {
 	for(var i = 0; i < tiles.length; i ++) {
@@ -46,6 +49,14 @@ function pickRandomColor(){
 	return "rgb(" + redValue + ", " + greenValue + ", " + blueValue + ")";
 };
 
+function addSelectedClass(btn){
+	btn.classList.add("selected");
+}
+
+function removeSelectedClass(btn){
+	btn.classList.remove("selected");
+}
+
 
 // game logic
 
@@ -61,6 +72,16 @@ resetButton.addEventListener("click", function(){
 		tiles[i].style.backgroundColor = colors[i];
 	};
 	h1.style.background = "#232323";
+});
+
+easyButton.addEventListener("click", function(){
+	removeSelectedClass(hardButton);
+	addSelectedClass(this);
+});
+
+hardButton.addEventListener("click", function(){
+	removeSelectedClass(easyButton);
+	addSelectedClass(this);
 });
 
 
@@ -84,6 +105,8 @@ for(var i = 0; i < tiles.length; i ++) {
 			}
 		});
 };
+
+
 
 
 
