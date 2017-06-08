@@ -1,22 +1,17 @@
 // variable declarations 
-var colors = [
-	"rgb(182, 66, 244)",
-	"rgb(152, 168, 11)",
-	"rgb(102, 195, 249)",
-	"rgb(249, 207, 102)",
-	"rgb(178, 7, 21)",
-	"rgb(97, 211, 154)"
-];
+var colors = generateRandomColors(6);
 
 var tiles = document.getElementsByClassName("tile");
 
-var winningColor = pickRandomColor();
+var winningColor = pickWinningColor();
 var winningColorDisplay = document.getElementById("winning-color");
 
 var winningColorDisplay = document.getElementById("winning-color");
 winningColorDisplay.textContent = winningColor;
 
 var message = document.getElementById("message");
+
+var h1 = document.querySelector("h1");
 
 // functions
 function changeColors(color) {
@@ -25,13 +20,28 @@ function changeColors(color) {
 	}
 };
 
-function pickRandomColor(){
+function pickWinningColor(){
 	var random = Math.floor(Math.random() * colors.length);
 	return colors[random];
 };
 
 function setContent(text){
 	message.textContent = text;
+};
+
+function generateRandomColors(num) {
+	var arr = [];
+	for(var i = 0; i < num; i ++) {
+		arr.push(pickRandomColor());
+	}
+	return arr;
+};
+
+function pickRandomColor(){
+	var redValue = Math.floor(Math.random() * 256);
+	var greenValue = Math.floor(Math.random() * 256);
+	var blueValue = Math.floor(Math.random() * 256);
+	return "rgb(" + redValue + ", " + greenValue + ", " + blueValue + ")";
 };
 
 
@@ -41,10 +51,10 @@ for(var i = 0; i < tiles.length; i ++) {
 
 		tiles[i].addEventListener("click", function(){
 			var clickedColor = this.style.backgroundColor;
-
 			if(clickedColor === winningColor) {
 				for(var i = 0; i < tiles.length; i ++) {
 					changeColors(clickedColor);
+					h1.style.backgroundColor = clickedColor;
 					setContent("Correct!");
 				}
 			} else {
@@ -55,8 +65,5 @@ for(var i = 0; i < tiles.length; i ++) {
 			}
 		});
 };
-
-
-
 
 
