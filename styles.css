@@ -19,10 +19,8 @@ h1 {
 	color: white;
 }
 
-span {
-	color: white;
-}
-
 #menu {
 	background: white;
+	height: 30px;
+	text-align: center;
 }

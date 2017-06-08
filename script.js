@@ -13,6 +13,8 @@ var message = document.getElementById("message");
 
 var h1 = document.querySelector("h1");
 
+var resetButton = document.getElementById("reset");
+
 // functions
 function changeColors(color) {
 	for(var i = 0; i < tiles.length; i ++) {
@@ -45,7 +47,23 @@ function pickRandomColor(){
 };
 
 
-// game logic 
+// game logic
+
+resetButton.addEventListener("click", function(){
+	// generate new colors
+	colors = generateRandomColors(6);
+	// pick new winning colors
+	winningColor = pickWinningColor();
+		// change display to match picked color
+	winningColorDisplay.textContent = winningColor;
+		// change color tiles
+	for(var i = 0; i < tiles.length; i ++) {
+		tiles[i].style.backgroundColor = colors[i];
+	};
+	h1.style.background = "#232323";
+});
+
+
 for(var i = 0; i < tiles.length; i ++) {
 		tiles[i].style.backgroundColor = colors[i];
 
@@ -56,6 +74,7 @@ for(var i = 0; i < tiles.length; i ++) {
 					changeColors(clickedColor);
 					h1.style.backgroundColor = clickedColor;
 					setContent("Correct!");
+					resetButton.textContent = "Play Again?"
 				}
 			} else {
 				for(var i = 0; i < tiles.length; i ++) {
@@ -65,5 +84,7 @@ for(var i = 0; i < tiles.length; i ++) {
 			}
 		});
 };
+
+
 
 
