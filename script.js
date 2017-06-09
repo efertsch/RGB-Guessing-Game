@@ -34,8 +34,8 @@ function pickWinningColor(){
 	return colors[random];
 };
 
-function setContent(text){
-	message.textContent = text;
+function setContent(element, text){
+	element.textContent = text;
 };
 
 function generateRandomColors(num) {
@@ -68,7 +68,7 @@ resetButton.addEventListener("click", function(){
 	colors = generateRandomColors(numOfTiles);
 	winningColor = pickWinningColor();
 	winningColorDisplay.textContent = winningColor;
-	this.textContent = "New Colors";
+	setContent(this, "New Colors");
 	for(var i = 0; i < tiles.length; i ++) {
 		tiles[i].style.backgroundColor = colors[i];
 	};
@@ -115,13 +115,13 @@ for(var i = 0; i < tiles.length; i ++) {
 				for(var i = 0; i < tiles.length; i ++) {
 					changeColors(clickedColor);
 					h1.style.backgroundColor = clickedColor;
-					setContent("Correct!");
-					resetButton.textContent = "Play Again?"
+					setContent(message, "Correct!");
+					setContent(resetButton, "Play Again?");
 				}
 			} else {
 				for(var i = 0; i < tiles.length; i ++) {
 					this.style.backgroundColor = "#232323";
-					setContent("Try Again!");
+					setContent(message, "Try Again!");
 				}
 			}
 		});
