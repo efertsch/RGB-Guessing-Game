@@ -13,12 +13,14 @@ var message = document.getElementById("message");
 
 var h1 = document.querySelector("h1");
 
+var buttons = document.querySelectorAll("button");
+
 var resetButton = document.getElementById("reset");
 
 var easyButton = document.getElementById("easy");
 var hardButton = document.getElementById("hard");
 
-var numOfSquares = 6;
+var numOfTiles = 6;
 
 // functions
 function changeColors(color) {
@@ -63,7 +65,7 @@ function removeSelectedClass(btn){
 // game logic
 
 resetButton.addEventListener("click", function(){
-	colors = generateRandomColors(numOfSquares);
+	colors = generateRandomColors(numOfTiles);
 	winningColor = pickWinningColor();
 	winningColorDisplay.textContent = winningColor;
 	for(var i = 0; i < tiles.length; i ++) {
@@ -75,8 +77,8 @@ resetButton.addEventListener("click", function(){
 easyButton.addEventListener("click", function(){
 	removeSelectedClass(hardButton);
 	addSelectedClass(this);
-	numOfSquares = 3;
-	colors = generateRandomColors(numOfSquares);
+	numOfTiles = 3;
+	colors = generateRandomColors(numOfTiles);
 	winningColor = pickWinningColor();
 	winningColorDisplay.textContent = winningColor;
 	for(var i = 0; i < tiles.length; i ++) {
@@ -91,8 +93,8 @@ easyButton.addEventListener("click", function(){
 hardButton.addEventListener("click", function(){
 	removeSelectedClass(easyButton);
 	addSelectedClass(this);
-	numOfSquares = 6;
-	colors = generateRandomColors(numOfSquares);
+	numOfTiles = 6;
+	colors = generateRandomColors(numOfTiles);
 	winningColor = pickWinningColor();
 	winningColorDisplay.textContent = winningColor;
 	for(var i = 0; i < tiles.length; i ++) {
@@ -121,6 +123,17 @@ for(var i = 0; i < tiles.length; i ++) {
 				}
 			}
 		});
+};
+
+for (var i = 0; i < buttons.length; i++){
+	buttons[i].addEventListener("mouseover", function(){
+		this.style.backgroundColor = "steelblue";
+		this.style.color = "white";
+	});
+	buttons[i].addEventListener("mouseleave", function(){
+		this.style.backgroundColor = "white";
+		this.style.color = "steelblue";
+	});
 };
 
 
