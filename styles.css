@@ -11,11 +11,15 @@ body {
 	float: left;
 	margin: 1.66%;
 	border-radius: 2em;
+	transition: background, 0.6s;
+	-webkit-transition: background, 0.6s;
+	-moz-transition: background, 0.6s;
 }
 
 #container {
 	max-width: 600px;
 	margin: 0 auto;
+	padding-top: 10px;
 }
 
 h1 {
@@ -60,6 +64,8 @@ button {
 	letter-spacing: 1px;
 	font-size: inherit;
 	transition: all, 0.3s;
+	-webkit-transition: all, 0.3s;
+	-moz-transition: all, 0.3s;
 }
 
 button:hover {
