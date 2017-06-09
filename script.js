@@ -18,6 +18,8 @@ var resetButton = document.getElementById("reset");
 var easyButton = document.getElementById("easy");
 var hardButton = document.getElementById("hard");
 
+var numOfSquares = 6;
+
 // functions
 function changeColors(color) {
 	for(var i = 0; i < tiles.length; i ++) {
@@ -61,13 +63,9 @@ function removeSelectedClass(btn){
 // game logic
 
 resetButton.addEventListener("click", function(){
-	// generate new colors
-	colors = generateRandomColors(6);
-	// pick new winning colors
+	colors = generateRandomColors(numOfSquares);
 	winningColor = pickWinningColor();
-		// change display to match picked color
 	winningColorDisplay.textContent = winningColor;
-		// change color tiles
 	for(var i = 0; i < tiles.length; i ++) {
 		tiles[i].style.backgroundColor = colors[i];
 	};
@@ -77,11 +75,30 @@ resetButton.addEventListener("click", function(){
 easyButton.addEventListener("click", function(){
 	removeSelectedClass(hardButton);
 	addSelectedClass(this);
+	numOfSquares = 3;
+	colors = generateRandomColors(numOfSquares);
+	winningColor = pickWinningColor();
+	winningColorDisplay.textContent = winningColor;
+	for(var i = 0; i < tiles.length; i ++) {
+		if(colors[i]) {
+			tiles[i].style.backgroundColor = colors[i];
+		} else {
+			tiles[i].style.display = "none";
+		}
+	};
 });
 
 hardButton.addEventListener("click", function(){
 	removeSelectedClass(easyButton);
 	addSelectedClass(this);
+	numOfSquares = 6;
+	colors = generateRandomColors(numOfSquares);
+	winningColor = pickWinningColor();
+	winningColorDisplay.textContent = winningColor;
+	for(var i = 0; i < tiles.length; i ++) {
+		tiles[i].style.backgroundColor = colors[i];
+		tiles[i].style.display = "block";
+	};
 });
 
 
