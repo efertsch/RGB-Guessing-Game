@@ -125,16 +125,6 @@ for(var i = 0; i < tiles.length; i ++) {
 		});
 };
 
-for (var i = 0; i < buttons.length; i++){
-	buttons[i].addEventListener("mouseover", function(){
-		this.style.backgroundColor = "steelblue";
-		this.style.color = "white";
-	});
-	buttons[i].addEventListener("mouseleave", function(){
-		this.style.backgroundColor = "white";
-		this.style.color = "steelblue";
-	});
-};
 
 
 
