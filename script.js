@@ -68,9 +68,11 @@ resetButton.addEventListener("click", function(){
 	colors = generateRandomColors(numOfTiles);
 	winningColor = pickWinningColor();
 	winningColorDisplay.textContent = winningColor;
+	this.textContent = "New Colors";
 	for(var i = 0; i < tiles.length; i ++) {
 		tiles[i].style.backgroundColor = colors[i];
 	};
+	message.textContent = "";
 	h1.style.background = "steelblue";
 });
 
