@@ -35,6 +35,11 @@ h1 {
 	text-align: center;
 }
 
+#message {
+	display: inline-block;
+	width: 20%;
+}
+
 .selected {
 	background: blue;
 }
@@ -48,5 +53,8 @@ button {
 	background: none;
 	color: steelblue;
 	text-transform: uppercase;
-	
+	height: 100%;
+	font-weight: 700;
+	letter-spacing: 1px;
+	font-size: inherit;
 }
