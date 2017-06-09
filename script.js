@@ -1,28 +1,20 @@
-// variable declarations 
-var colors = generateRandomColors(6);
-
+// Variable Declarations 
+var colors = [];
 var tiles = document.getElementsByClassName("tile");
-
-var winningColor = pickWinningColor();
-var winningColorDisplay = document.getElementById("winning-color");
-
-var winningColorDisplay = document.getElementById("winning-color");
-winningColorDisplay.textContent = winningColor;
-
-var message = document.getElementById("message");
-
-var h1 = document.querySelector("h1");
-
-var buttons = document.querySelectorAll("button");
-
-var resetButton = document.getElementById("reset");
-
-var easyButton = document.getElementById("easy");
-var hardButton = document.getElementById("hard");
-
+var winningColor;
 var numOfTiles = 6;
 
-// functions
+// Selectors
+var winningColorDisplay = document.getElementById("winning-color");
+var winningColorDisplay = document.getElementById("winning-color");
+var message = document.getElementById("message");
+var h1 = document.querySelector("h1");
+var buttons = document.querySelectorAll("button");
+var resetButton = document.getElementById("reset");
+var modeButtons = document.getElementsByClassName("mode");
+
+
+// Functions
 function changeColors(color) {
 	for(var i = 0; i < tiles.length; i ++) {
 		tiles[i].style.backgroundColor = color;
@@ -34,8 +26,8 @@ function pickWinningColor(){
 	return colors[random];
 };
 
-function setContent(text){
-	message.textContent = text;
+function setContent(element, text){
+	element.textContent = text;
 };
 
 function generateRandomColors(num) {
@@ -55,77 +47,82 @@ function pickRandomColor(){
 
 function addSelectedClass(btn){
 	btn.classList.add("selected");
-}
+};
 
-function removeSelectedClass(btn){
-	btn.classList.remove("selected");
-}
+function removeSelectedClass(btns){
+	for(var i = 0; i < btns.length; i ++){
+		btns[i].classList.remove("selected");
+	}
+};
 
-
-// game logic
-
-resetButton.addEventListener("click", function(){
+function resetGame(){
 	colors = generateRandomColors(numOfTiles);
 	winningColor = pickWinningColor();
 	winningColorDisplay.textContent = winningColor;
-	this.textContent = "New Colors";
-	for(var i = 0; i < tiles.length; i ++) {
-		tiles[i].style.backgroundColor = colors[i];
-	};
-	message.textContent = "";
-	h1.style.background = "steelblue";
-});
+	setContent(resetButton, "New Colors");
+	setContent(message, "");
 
-easyButton.addEventListener("click", function(){
-	removeSelectedClass(hardButton);
-	addSelectedClass(this);
-	numOfTiles = 3;
-	colors = generateRandomColors(numOfTiles);
-	winningColor = pickWinningColor();
-	winningColorDisplay.textContent = winningColor;
 	for(var i = 0; i < tiles.length; i ++) {
-		if(colors[i]) {
+		if (colors[i]) {
+			tiles[i].style.display = "block";
 			tiles[i].style.backgroundColor = colors[i];
 		} else {
 			tiles[i].style.display = "none";
 		}
 	};
-});
 
-hardButton.addEventListener("click", function(){
-	removeSelectedClass(easyButton);
-	addSelectedClass(this);
-	numOfTiles = 6;
-	colors = generateRandomColors(numOfTiles);
-	winningColor = pickWinningColor();
-	winningColorDisplay.textContent = winningColor;
-	for(var i = 0; i < tiles.length; i ++) {
-		tiles[i].style.backgroundColor = colors[i];
-		tiles[i].style.display = "block";
+	h1.style.background = "steelblue";
+};
+
+function setUpModeButtons(){
+	for (var i = 0; i < modeButtons.length; i++){
+	modeButtons[i].addEventListener("click", function(){
+		removeSelectedClass(modeButtons);
+		addSelectedClass(this);
+		this.textContent === "Easy" ? numOfTiles = 3 : numOfTiles = 6;
+		resetGame();
+		});
 	};
-});
+};
 
-
-for(var i = 0; i < tiles.length; i ++) {
-		tiles[i].style.backgroundColor = colors[i];
-
+function setUpTiles(){
+	for(var i = 0; i < tiles.length; i ++) {
 		tiles[i].addEventListener("click", function(){
 			var clickedColor = this.style.backgroundColor;
 			if(clickedColor === winningColor) {
 				for(var i = 0; i < tiles.length; i ++) {
 					changeColors(clickedColor);
 					h1.style.backgroundColor = clickedColor;
-					setContent("Correct!");
-					resetButton.textContent = "Play Again?"
+					setContent(message, "Correct!");
+					setContent(resetButton, "Play Again?");
 				}
 			} else {
 				for(var i = 0; i < tiles.length; i ++) {
 					this.style.backgroundColor = "#232323";
-					setContent("Try Again!");
+					setContent(message, "Try Again!");
 				}
 			}
 		});
+	};
 };
+
+function resetButtonEvent(){
+	resetButton.addEventListener("click", function(){
+		resetGame();
+	});
+};
+
+function initGame() {
+	setUpModeButtons();
+	setUpTiles();
+	resetGame();
+};
+
+
+// Function Calls
+initGame();
+resetButtonEvent();
+
 
 
 
