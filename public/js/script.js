@@ -18,7 +18,6 @@ var colors 							= [],
 //Changes the background color of all tiles
 function changeColors(color) {
 	for(var i = 0; i < tiles.length; i ++) {
-		// tiles[i].style.backgroundColor = color;
 		setBackgroundColor(tiles[i], color);
 	}
 };
@@ -36,11 +35,11 @@ function setContent(element, text){
 
 // Generates an array of random colors 
 function generateRandomColors(num) {
-	var arr = [];
+	var colors = [];
 	for(var i = 0; i < num; i ++) {
-		arr.push(pickRandomColor());
+		colors.push(pickRandomColor());
 	}
-	return arr;
+	return colors;
 };
 
 // Generates a single color using random rgb values 
@@ -83,25 +82,27 @@ function resetGame(){
 		}
 	};
 	setBackgroundColor(h1, themeColor);
+	removeSelectedClass(modeButtons);
 	changeButtonTextColor(themeColor);
 };
 
 // Sets up easy and hard mode button functionality
 function setUpModeButtons(){
 	for (var i = 0; i < modeButtons.length; i++){
+
 		modeButtons[i].addEventListener("click", function(){
 		removeSelectedClass(modeButtons);
 		addSelectedClass(this);
 		this.textContent === "Easy" ? numOfTiles = 3 : numOfTiles = 6;
 		resetGame();
 		});
+
 	};
 };
 
 // Loops over tiles and adds an event listener to each tile
 // Determines if clicked tile was of the correct color
 function setUpTiles(){
-
 	for(var i = 0; i < tiles.length; i ++) {
 		tiles[i].addEventListener("click", function(){
 			var clickedColor = this.style.backgroundColor;
@@ -118,7 +119,7 @@ function setUpTiles(){
 				}
 			} else {
 				for(var i = 0; i < tiles.length; i ++) {
-					this.style.backgroundColor = "rgb(35, 35, 35)";
+					setBackgroundColor(this, "rgb(35, 35, 35)");
 					setContent(message, "Try Again!");
 				}
 			}
@@ -133,10 +134,12 @@ function resetButtonEvent(){
 	});
 };
 
+// Sets the color of a given element to a given value
 function setTextColor(text, value){
 	text.style.color = value;
 }
 
+// Sets the background color of a given element to a given value
 function setBackgroundColor(elem, value){
 	elem.style.backgroundColor = value;
 }
@@ -149,6 +152,7 @@ function initGame() {
 	resetButtonEvent();
 };
 
+// Changes text color of all buttons 
 function changeButtonTextColor(color) {
 	var buttons = document.getElementsByClassName("button");
 	for(i=0; i < buttons.length; i++){
@@ -157,6 +161,17 @@ function changeButtonTextColor(color) {
 	return buttons;
 }
 
+// function mouseoverButtons(color){
+// 	var buttons = document.getElementsByClassName("button");
+// 	for(var i=0; i < buttons.length; i++){
+// 		buttons[i].addEventListener('mouseover', function(){
+// 			setTextColor(buttons[i], 'rgb(255, 255, 255');
+// 			setBackgroundColor(buttons[i], color);
+// 		});
+// 	}
+// 	return buttons;
+// }
+
 
 // Runs the program
 initGame();
@@ -164,7 +179,12 @@ initGame();
 
 
 
-
+//pseudo
+//if the game has been reset change hover settings to normal (theme color with white text)
+//if game has just been won (before reset) change hover settings (winning color with white text)
+// Mouseover and if color == theme color 
+	// background == themecolor and text == white
+	// otherwise background == winning color and text == white
 
 
 

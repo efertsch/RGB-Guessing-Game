@@ -53,7 +53,7 @@ header {
 	@include transition(all, 0.3s);
 	outline: none;
 	&:hover {
-		color: rgb(255,255,255);
+		color: $text-color;
 		background: $theme-color;
 	}
 }
@@ -102,6 +102,7 @@ header {
 
 #winning-color {
 	font-size: 200%;
+	display: block;
 }
 
 @media screen and (min-width: $phone-portrait) and (max-width: $phone-landscape){

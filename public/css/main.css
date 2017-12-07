@@ -72,7 +72,8 @@ header h1 {
   letter-spacing: 1px; }
 
 #winning-color {
-  font-size: 200%; }
+  font-size: 200%;
+  display: block; }
 
 @media screen and (min-width: 320px) and (max-width: 480px) {
   header h1 {
