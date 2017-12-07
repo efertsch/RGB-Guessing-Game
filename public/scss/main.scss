@@ -4,7 +4,7 @@ $theme-color: rgb(154, 205, 50);
 $text-case-style: uppercase;
 $text-color: rgb(255, 255, 255);
 $phone-portrait: 320px;
-$phone-landscape: 480px;
+$phone-landscape: 550px;
 
 @mixin transition($property, $duration) {
   -webkit-transition: $property, $duration;
