@@ -78,7 +78,7 @@ function resetGame(){
 		}
 	};
 
-	h1.style.background = "rgb(143, 188, 139)";
+	h1.style.background = "RGB(154, 205, 50)";
 };
 
 // Sets up easy and hard mode button functionality

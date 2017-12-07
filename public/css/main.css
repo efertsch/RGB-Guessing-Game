@@ -10,7 +10,7 @@ body {
 header h1 {
   color: white;
   text-align: center;
-  background: #8fbc8b;
+  background: yellowgreen;
   font-weight: normal;
   text-transform: uppercase;
   line-height: 1.1;
@@ -20,7 +20,7 @@ header h1 {
 .button {
   border: none;
   background: none;
-  color: #8fbc8b;
+  color: yellowgreen;
   text-transform: uppercase;
   height: 100%;
   font-weight: 700;
@@ -35,11 +35,11 @@ header h1 {
   outline: none; }
   .button:hover {
     color: white;
-    background: #8fbc8b; }
+    background: yellowgreen; }
 
 .selected {
   color: white;
-  background: #8fbc8b; }
+  background: yellowgreen; }
 
 .tile {
   width: 30%;
