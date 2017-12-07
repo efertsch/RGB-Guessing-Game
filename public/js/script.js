@@ -9,7 +9,8 @@ var colors 							= [],
 	 	h1 									= document.querySelector("h1"),
 	 	buttons 						= document.querySelectorAll("button"),
 	 	resetButton 				= document.getElementById("reset"),
-	 	modeButtons 				= document.getElementsByClassName("mode")
+	 	modeButtons 				= document.getElementsByClassName("mode"),
+	 	themeColor          = "rgb(154, 205, 50)"
 
 
 // Helper functions
@@ -17,7 +18,7 @@ var colors 							= [],
 //Changes the background color of all tiles
 function changeColors(color) {
 	for(var i = 0; i < tiles.length; i ++) {
-		tiles[i].style.backgroundColor = color;
+		setBackgroundColor(tiles[i], color);
 	}
 };
 
@@ -34,11 +35,11 @@ function setContent(element, text){
 
 // Generates an array of random colors 
 function generateRandomColors(num) {
-	var arr = [];
+	var colors = [];
 	for(var i = 0; i < num; i ++) {
-		arr.push(pickRandomColor());
+		colors.push(pickRandomColor());
 	}
-	return arr;
+	return colors;
 };
 
 // Generates a single color using random rgb values 
@@ -64,37 +65,43 @@ function removeSelectedClass(elems){
 // Resets the game 
 function resetGame(){
 	colors = generateRandomColors(numOfTiles);
+
 	winningColor = pickWinningColor();
+
 	winningColorDisplay.textContent = winningColor;
+
 	setContent(resetButton, "New Colors");
 	setContent(message, "");
 	
 	for(var i = 0; i < tiles.length; i ++) {
 		if (colors[i]) {
 			tiles[i].style.display = "block";
-			tiles[i].style.backgroundColor = colors[i];
+			setBackgroundColor(tiles[i], colors[i]);
 		} else {
 			tiles[i].style.display = "none";
 		}
 	};
-
-	h1.style.background = "steelblue";
+	setBackgroundColor(h1, themeColor);
+	removeSelectedClass(modeButtons);
+	changeButtonTextColor(themeColor);
 };
 
 // Sets up easy and hard mode button functionality
 function setUpModeButtons(){
 	for (var i = 0; i < modeButtons.length; i++){
-	modeButtons[i].addEventListener("click", function(){
+
+		modeButtons[i].addEventListener("click", function(){
 		removeSelectedClass(modeButtons);
 		addSelectedClass(this);
 		this.textContent === "Easy" ? numOfTiles = 3 : numOfTiles = 6;
 		resetGame();
 		});
+
 	};
 };
 
 // Loops over tiles and adds an event listener to each tile
-//Determines if clicked tile was of the correct color
+// Determines if clicked tile was of the correct color
 function setUpTiles(){
 	for(var i = 0; i < tiles.length; i ++) {
 		tiles[i].addEventListener("click", function(){
@@ -102,13 +109,17 @@ function setUpTiles(){
 			if(clickedColor === winningColor) {
 				for(var i = 0; i < tiles.length; i ++) {
 					changeColors(clickedColor);
-					h1.style.backgroundColor = clickedColor;
+
+					setBackgroundColor(h1, clickedColor);
+
+					changeButtonTextColor(clickedColor);
+
 					setContent(message, "Correct!");
 					setContent(resetButton, "Play Again?");
 				}
 			} else {
 				for(var i = 0; i < tiles.length; i ++) {
-					this.style.backgroundColor = "#232323";
+					setBackgroundColor(this, "rgb(35, 35, 35)");
 					setContent(message, "Try Again!");
 				}
 			}
@@ -123,6 +134,16 @@ function resetButtonEvent(){
 	});
 };
 
+// Sets the color of a given element to a given value
+function setTextColor(text, value){
+	text.style.color = value;
+}
+
+// Sets the background color of a given element to a given value
+function setBackgroundColor(elem, value){
+	elem.style.backgroundColor = value;
+}
+
 // Initializes the game
 function initGame() {
 	setUpModeButtons();
@@ -131,6 +152,26 @@ function initGame() {
 	resetButtonEvent();
 };
 
+// Changes text color of all buttons 
+function changeButtonTextColor(color) {
+	var buttons = document.getElementsByClassName("button");
+	for(i=0; i < buttons.length; i++){
+		setTextColor(buttons[i], color);
+	}
+	return buttons;
+}
+
+// function mouseoverButtons(color){
+// 	var buttons = document.getElementsByClassName("button");
+// 	for(var i=0; i < buttons.length; i++){
+// 		buttons[i].addEventListener('mouseover', function(){
+// 			setTextColor(buttons[i], 'rgb(255, 255, 255');
+// 			setBackgroundColor(buttons[i], color);
+// 		});
+// 	}
+// 	return buttons;
+// }
+
 
 // Runs the program
 initGame();
@@ -138,7 +179,12 @@ initGame();
 
 
 
-
+//pseudo
+//if the game has been reset change hover settings to normal (theme color with white text)
+//if game has just been won (before reset) change hover settings (winning color with white text)
+// Mouseover and if color == theme color 
+	// background == themecolor and text == white
+	// otherwise background == winning color and text == white
 
 
 
