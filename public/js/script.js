@@ -78,7 +78,7 @@ function resetGame(){
 		}
 	};
 
-	h1.style.background = "steelblue";
+	h1.style.background = "rgb(143, 188, 139)";
 };
 
 // Sets up easy and hard mode button functionality
@@ -94,15 +94,21 @@ function setUpModeButtons(){
 };
 
 // Loops over tiles and adds an event listener to each tile
-//Determines if clicked tile was of the correct color
+// Determines if clicked tile was of the correct color
 function setUpTiles(){
+
 	for(var i = 0; i < tiles.length; i ++) {
 		tiles[i].addEventListener("click", function(){
 			var clickedColor = this.style.backgroundColor;
 			if(clickedColor === winningColor) {
 				for(var i = 0; i < tiles.length; i ++) {
 					changeColors(clickedColor);
+					// break into function for setting to clicked color
 					h1.style.backgroundColor = clickedColor;
+					resetButton.style.color = clickedColor;
+					modeButtons[0].style.color = clickedColor;
+					modeButtons[1].style.color = clickedColor;
+
 					setContent(message, "Correct!");
 					setContent(resetButton, "Play Again?");
 				}

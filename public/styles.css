@@ -16,7 +16,7 @@ body {
 	-moz-transition: background, 0.6s;
 }
 
-#container {
+.container {
 	max-width: 600px;
 	margin: 20px auto;
 }
@@ -24,7 +24,7 @@ body {
 h1 {
 	color: white;
 	text-align: center;
-	background: steelblue;
+	background: RGB(255, 127, 80);
 	margin: 0;
 	font-weight: normal;
 	text-transform: uppercase;
@@ -51,7 +51,7 @@ h1 {
 
 .selected {
 	color: white;
-	background: steelblue;
+	background: RGB(255, 127, 80);
 }
 
 #winning-color {
@@ -61,7 +61,7 @@ h1 {
 button {
 	border: none;
 	background: none;
-	color: steelblue;
+	color: RGB(255, 127, 80);
 	text-transform: uppercase;
 	height: 100%;
 	font-weight: 700;
@@ -75,5 +75,5 @@ button {
 
 button:hover {
 	color: white;
-	background: steelblue;
+	background: RGB(255, 127, 80);
 }
