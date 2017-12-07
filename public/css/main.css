@@ -74,7 +74,10 @@ header h1 {
   font-size: 200%; }
 
 @media screen and (min-width: 320px) and (max-width: 480px) {
-  h1 {
-    font-size: 20px; } }
+  header h1 {
+    font-size: 20px; }
+
+  #menu {
+    font-size: 12px; } }
 
 /*# sourceMappingURL=main.css.map */
