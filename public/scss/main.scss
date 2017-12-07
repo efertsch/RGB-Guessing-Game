@@ -3,6 +3,8 @@ $body-background: rgb(35,35,35);
 $theme-color: rgb(143, 188, 139);
 $text-case-style: uppercase;
 $text-color: rgb(255, 255, 255);
+$phone-portrait: 320px;
+$phone-landscape: 480px;
 
 @mixin transition($property, $duration) {
   -webkit-transition: $property, $duration;
@@ -90,4 +92,10 @@ header {
 
 #winning-color {
 	font-size: 200%;
+}
+
+@media screen and (min-width: $phone-portrait) and (max-width: $phone-landscape){
+   h1 {
+		font-size: 20px;
+   }
 }
