@@ -9,7 +9,8 @@ var colors 							= [],
 	 	h1 									= document.querySelector("h1"),
 	 	buttons 						= document.querySelectorAll("button"),
 	 	resetButton 				= document.getElementById("reset"),
-	 	modeButtons 				= document.getElementsByClassName("mode")
+	 	modeButtons 				= document.getElementsByClassName("mode"),
+	 	themeColor          = "rgb(154, 205, 50)"
 
 
 // Helper functions
@@ -17,7 +18,8 @@ var colors 							= [],
 //Changes the background color of all tiles
 function changeColors(color) {
 	for(var i = 0; i < tiles.length; i ++) {
-		tiles[i].style.backgroundColor = color;
+		// tiles[i].style.backgroundColor = color;
+		setBackgroundColor(tiles[i], color);
 	}
 };
 
@@ -64,27 +66,30 @@ function removeSelectedClass(elems){
 // Resets the game 
 function resetGame(){
 	colors = generateRandomColors(numOfTiles);
+
 	winningColor = pickWinningColor();
+
 	winningColorDisplay.textContent = winningColor;
+
 	setContent(resetButton, "New Colors");
 	setContent(message, "");
 	
 	for(var i = 0; i < tiles.length; i ++) {
 		if (colors[i]) {
 			tiles[i].style.display = "block";
-			tiles[i].style.backgroundColor = colors[i];
+			setBackgroundColor(tiles[i], colors[i]);
 		} else {
 			tiles[i].style.display = "none";
 		}
 	};
-
-	h1.style.background = "RGB(154, 205, 50)";
+	setBackgroundColor(h1, themeColor);
+	changeButtonTextColor(themeColor);
 };
 
 // Sets up easy and hard mode button functionality
 function setUpModeButtons(){
 	for (var i = 0; i < modeButtons.length; i++){
-	modeButtons[i].addEventListener("click", function(){
+		modeButtons[i].addEventListener("click", function(){
 		removeSelectedClass(modeButtons);
 		addSelectedClass(this);
 		this.textContent === "Easy" ? numOfTiles = 3 : numOfTiles = 6;
@@ -103,18 +108,17 @@ function setUpTiles(){
 			if(clickedColor === winningColor) {
 				for(var i = 0; i < tiles.length; i ++) {
 					changeColors(clickedColor);
-					// break into function for setting to clicked color
-					h1.style.backgroundColor = clickedColor;
-					resetButton.style.color = clickedColor;
-					modeButtons[0].style.color = clickedColor;
-					modeButtons[1].style.color = clickedColor;
+
+					setBackgroundColor(h1, clickedColor);
+
+					changeButtonTextColor(clickedColor);
 
 					setContent(message, "Correct!");
 					setContent(resetButton, "Play Again?");
 				}
 			} else {
 				for(var i = 0; i < tiles.length; i ++) {
-					this.style.backgroundColor = "#232323";
+					this.style.backgroundColor = "rgb(35, 35, 35)";
 					setContent(message, "Try Again!");
 				}
 			}
@@ -129,6 +133,14 @@ function resetButtonEvent(){
 	});
 };
 
+function setTextColor(text, value){
+	text.style.color = value;
+}
+
+function setBackgroundColor(elem, value){
+	elem.style.backgroundColor = value;
+}
+
 // Initializes the game
 function initGame() {
 	setUpModeButtons();
@@ -136,6 +148,14 @@ function initGame() {
 	resetGame();
 	resetButtonEvent();
 };
+
+function changeButtonTextColor(color) {
+	var buttons = document.getElementsByClassName("button");
+	for(i=0; i < buttons.length; i++){
+		setTextColor(buttons[i], color);
+	}
+	return buttons;
+}
 
 
 // Runs the program

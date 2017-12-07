@@ -5,7 +5,8 @@
 body {
   background: #232323;
   margin: 0;
-  font-family: "Monserrat", "Avenir"; }
+  font-family: "Monserrat", "Avenir";
+  position: relative; }
 
 header h1 {
   color: white;
