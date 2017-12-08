@@ -54,12 +54,6 @@ header {
 	outline: none;
 }
 
-
-.selected {
-	background-color: $theme-color;
-	color: white !important;
-}
-
 .tile {
 	width: 30%;
 	padding-bottom: 30%;
@@ -73,14 +67,6 @@ header {
 	max-width: 600px;
 	margin: 20px auto;
 }
-
-// .fa-question-circle {
-// 	color: $theme-color;
-// 	font-size: inherit;
-// 	position: absolute;
-// 	bottom:0;
-//   right:0;
-// }
 
 #menu {
 	background: white;
@@ -106,13 +92,13 @@ header {
    header {
    	h1 {
 		font-size: 20px;
-   }
+   	}
    }
 
    #menu {
 		font-size: 12px;
    }
-
+   
    .container {
    	margin-top: 50px;
    }
