@@ -55,18 +55,6 @@ function pickRandomColor(){
 	return "rgb(" + redValue + ", " + greenValue + ", " + blueValue + ")";
 };
 
-// Adds the 'selected' class to a given element
-function addSelectedClass(elem){
-	elem.classList.add("selected");
-};
-
-// Removes the 'selected' class from a given element
-function removeSelectedClass(elems){
-	for(var i = 0; i < elems.length; i ++){
-		elems[i].classList.remove("selected");
-	}
-};
-
 // Resets the game 
 function resetGame(){
 	colors = generateRandomColors(numOfTiles);
@@ -87,7 +75,6 @@ function resetGame(){
 		}
 	};
 	setBackgroundColor(h1, themeColor);
-	removeSelectedClass(modeButtons);
 	changeButtonTextColor(themeColor);
 };
 
@@ -95,8 +82,6 @@ function resetGame(){
 function setUpModeButtons(){
 	for (var i = 0; i < modeButtons.length; i++){
 	modeButtons[i].addEventListener("click", function(){
-		removeSelectedClass(modeButtons);
-		addSelectedClass(this);
 		this.textContent === "Easy" ? numOfTiles = 3 : numOfTiles = 6;
 		resetGame();
 		});
