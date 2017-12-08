@@ -34,13 +34,10 @@ header h1 {
   -o-transition: all, 0.3s;
   transition: all, 0.3s;
   outline: none; }
-  .button:hover {
-    color: white;
-    background: yellowgreen; }
 
 .selected {
-  color: white;
-  background: yellowgreen; }
+  background-color: yellowgreen;
+  color: white !important; }
 
 .tile {
   width: 30%;

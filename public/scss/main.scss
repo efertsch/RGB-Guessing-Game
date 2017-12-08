@@ -52,15 +52,12 @@ header {
 	font-size: inherit;
 	@include transition(all, 0.3s);
 	outline: none;
-	&:hover {
-		color: $text-color;
-		background: $theme-color;
-	}
 }
 
+
 .selected {
-	color: $text-color;
-	background: $theme-color;
+	background-color: $theme-color;
+	color: white !important;
 }
 
 .tile {
