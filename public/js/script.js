@@ -10,7 +10,12 @@ var colors 							= [],
 	 	buttons 						= document.querySelectorAll("button"),
 	 	resetButton 				= document.getElementById("reset"),
 	 	modeButtons 				= document.getElementsByClassName("mode"),
+	 	buttons        			= document.getElementsByClassName("button"),
 	 	themeColor          = "rgb(154, 205, 50)"
+
+
+// Run the program
+initGame();
 
 
 // Helper functions
@@ -73,7 +78,7 @@ function resetGame(){
 	setContent(resetButton, "New Colors");
 	setContent(message, "");
 	
-	for(var i = 0; i < tiles.length; i ++) {
+	for (var i = 0; i < tiles.length; i ++) {
 		if (colors[i]) {
 			tiles[i].style.display = "block";
 			setBackgroundColor(tiles[i], colors[i]);
@@ -89,14 +94,12 @@ function resetGame(){
 // Sets up easy and hard mode button functionality
 function setUpModeButtons(){
 	for (var i = 0; i < modeButtons.length; i++){
-
-		modeButtons[i].addEventListener("click", function(){
+	modeButtons[i].addEventListener("click", function(){
 		removeSelectedClass(modeButtons);
 		addSelectedClass(this);
 		this.textContent === "Easy" ? numOfTiles = 3 : numOfTiles = 6;
 		resetGame();
 		});
-
 	};
 };
 
@@ -116,6 +119,7 @@ function setUpTiles(){
 
 					setContent(message, "Correct!");
 					setContent(resetButton, "Play Again?");
+
 				}
 			} else {
 				for(var i = 0; i < tiles.length; i ++) {
@@ -144,14 +148,6 @@ function setBackgroundColor(elem, value){
 	elem.style.backgroundColor = value;
 }
 
-// Initializes the game
-function initGame() {
-	setUpModeButtons();
-	setUpTiles();
-	resetGame();
-	resetButtonEvent();
-};
-
 // Changes text color of all buttons 
 function changeButtonTextColor(color) {
 	var buttons = document.getElementsByClassName("button");
@@ -161,30 +157,16 @@ function changeButtonTextColor(color) {
 	return buttons;
 }
 
-// function mouseoverButtons(color){
-// 	var buttons = document.getElementsByClassName("button");
-// 	for(var i=0; i < buttons.length; i++){
-// 		buttons[i].addEventListener('mouseover', function(){
-// 			setTextColor(buttons[i], 'rgb(255, 255, 255');
-// 			setBackgroundColor(buttons[i], color);
-// 		});
-// 	}
-// 	return buttons;
-// }
-
-
-// Runs the program
-initGame();
+// Initializes the game
+function initGame() {
+	setUpModeButtons();
+	setUpTiles();
+	resetGame();
+	resetButtonEvent();
+};
 
 
 
-
-//pseudo
-//if the game has been reset change hover settings to normal (theme color with white text)
-//if game has just been won (before reset) change hover settings (winning color with white text)
-// Mouseover and if color == theme color 
-	// background == themecolor and text == white
-	// otherwise background == winning color and text == white
 
 
 
