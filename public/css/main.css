@@ -37,7 +37,7 @@ header h1 {
 
 .selected {
   background-color: yellowgreen;
-  color: white !important; }
+  color: white }
 
 .tile {
   width: 30%;
